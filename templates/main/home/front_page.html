@@ -1,4 +1,4 @@
-{% extends 'main/base.html' %}
+
 {% load url from future %}{% load staticfiles %}
 
 
@@ -6,9 +6,30 @@
 
 {% block content %}
 
-
+<head>
+	<title>
+	Patient Journal
+	</title>
+</head>
 
 
 {% block main_content %}
+<body>
+Signing in?
+<form name="wrapper" action="/hackhealth/signin" method="POST">
+	<br>Your email: <input type="text" name="email"> 
+	<br>Password: <input type="password" name="pwd">
+	<input type="submit" value="Submit">
+</form>
+Want to sign up?
+<form name="wrapper" action="/hackhealth/signup" method="POST">
+	br>Your name: <input type="text" name="name"> 
+	<br>Your email: <input type="text" name="email">
+	<br><input type="radio" name="gender" value="male">Male
+	<input type="radio" name="gender" value="female">Female
+	<input type="submit" value="Submit">
+</form>
+</body>
+
 {% endblock %}
 {% endblock %}
