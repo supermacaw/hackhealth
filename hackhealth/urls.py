@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.http import HttpResponseRedirect
+from main.views import front_page, home_page
 
 
 # Uncomment the next two lines to enable the admin:
