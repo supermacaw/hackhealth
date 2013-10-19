@@ -1,14 +1,5 @@
 # Django settings for hackhealth project.
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
-
-ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
-)
-
-MANAGERS = ADMINS
-
 
 
 import os
@@ -19,25 +10,82 @@ import dj_database_url
 
 
 
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
+
+ADMINS = (
+    # ('Your Name', 'your_email@example.com'),
+)
+
+MANAGERS = ADMINS
+
+os.environ['DJANGO_SETTINGS_MODULE'] = "hackhealth.settings"
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',#url.path[1:],                      # Or path to database file if using sqlite3.
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'd46t403ulk9puf',#url.path[1:],                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
-        'USER': '',#url.username,
-        'PASSWORD': '', #url.password,
-        'HOST': '', #url.hostname, #'postgres://ibibrqehmfhogo:FECNIlUne4sF_-LyMTphXay-oF@ec2-54-235-92-161.compute-1.amazonaws.com',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '', #url.port,#'5432/d46t403ulk9puf',                      # Set to empty string for default.
+        'USER': 'ibibrqehmfhogo',#url.username,
+        'PASSWORD': 'FECNIlUne4sF_-LyMTphXay-oF', #url.password,
+        'HOST': 'ec2-54-235-92-161.compute-1.amazonaws.com', #url.hostname, #'postgres://ibibrqehmfhogo:FECNIlUne4sF_-LyMTphXay-oF@ec2-54-235-92-161.compute-1.amazonaws.com',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '5432', #url.port,#'5432/d46t403ulk9puf',                      # Set to empty string for default.
     }
 }
 
+
+
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
+
+# Static asset configuration
+#import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = 'staticfiles'
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+
+
+# Absolute path to the directory static files should be collected to.
+# Don't put anything in this directory yourself; store your static files
+# in apps' "static/" subdirectories and in STATICFILES_DIRS.
+# Example: "/var/www/example.com/static/"
+STATIC_ROOT = ''
+
+# URL prefix for static files.
+# Example: "http://example.com/static/", "http://static.example.com/"
+STATIC_URL = '/static/'
+
+# Additional locations of static files
+STATICFILES_DIRS = (
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+)
+
+# List of finder classes that know how to find static files in
+# various locations.
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+)
+
+
+"""
+
+import dj_database_url
 dj_database_url.config(default='postgres://ibibrqehmfhogo:FECNIlUne4sF_-LyMTphXay-oF@ec2-54-235-92-161.compute-1.amazonaws.com:5432/d46t403ulk9puf')
 
 
 DATABASES['default'] =  dj_database_url.config(default='postgres://ibibrqehmfhogo:FECNIlUne4sF_-LyMTphXay-oF@ec2-54-235-92-161.compute-1.amazonaws.com:5432/d46t403ulk9puf')
+DATABASES['default']['ENGINE']='django.db.backends.postgresql_psycopg2'
 
-
-
+"""
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
@@ -75,30 +123,6 @@ MEDIA_ROOT = ''
 # Examples: "http://example.com/media/", "http://media.example.com/"
 MEDIA_URL = ''
 
-# Absolute path to the directory static files should be collected to.
-# Don't put anything in this directory yourself; store your static files
-# in apps' "static/" subdirectories and in STATICFILES_DIRS.
-# Example: "/var/www/example.com/static/"
-STATIC_ROOT = ''
-
-# URL prefix for static files.
-# Example: "http://example.com/static/", "http://static.example.com/"
-STATIC_URL = '/static/'
-
-# Additional locations of static files
-STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-)
-
-# List of finder classes that know how to find static files in
-# various locations.
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
-)
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'xf^&2_hguqh!@chl7&v97@^l+_97)-$dqg^u&08j8v@xvs$3lh'
@@ -138,6 +162,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'main',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
@@ -172,23 +197,4 @@ LOGGING = {
         },
     }
 }
-
-
-
-# Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-# Allow all host headers
-ALLOWED_HOSTS = ['*']
-
-# Static asset configuration
-import os
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = 'staticfiles'
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
-
 
