@@ -14,7 +14,7 @@
 {% block main_content %}
 <body>
 Signing in?
-<form name="wrapper" id="signin_form" action={% url 'main.views.signin' %} method="POST" >
+<form name="wrapper" id="signin_form" action=main.views.signin method="POST" >
 
 	<label>{{rform.email.label}}</label>
 	<input type="text" class="large_gray_text_box hcenter nofloat" name="{{rform.email.html_name}}" {% if rform.email.value %}value="{{rform.email.value}}"{%endif%}/>
@@ -37,7 +37,7 @@ Signing in?
 
 
 Want to sign up?
-<form name="wrapper" id="signup_form" action={% url 'main.views.signup' %} method="POST">
+<form name="wrapper" id="signup_form" action=main.views.signup method="POST">
 	br>Your name: <input type="text" name="name">
 	<br>Your email: <input type="text" name="email">
 	<br><input type="radio" name="gender" value="male">Male
