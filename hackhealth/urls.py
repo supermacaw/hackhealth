@@ -9,14 +9,11 @@ from main.views import front_page, home_page
 
 
 #generic views
-urlpatterns = patterns('main.home_views',
+urlpatterns = patterns('main.views',
     url(r'^$', 'front_page'),#the first page
     url(r'^home/$', 'home_page'),#the personalized home page with Notifications etc
     url(r'^about/$', 'about'),#about page
 )
-
-
-
 
 urlpatterns = patterns('',
 	url(r'^$', 'front_page'),#the first page
