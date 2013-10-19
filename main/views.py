@@ -34,6 +34,16 @@ def front_page(request):
     rc['rform'] = EmailRegisterForm()
     return render(request, "main/home/front_page.html", rc)
 
+def signin(request):
+	rc = {}
+	if request.method=="POST":
+		rc["email"] = request["wrapper"]["email"]
+		rc["password"] = request["wrapper"]["password"]
+
+
+
+
+
 
 def front_page(request):
 	return render(request, 'frontpage.html', {})

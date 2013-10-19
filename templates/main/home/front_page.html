@@ -16,14 +16,31 @@
 {% block main_content %}
 <body>
 Signing in?
-<form name="wrapper" action="/hackhealth/signin" method="POST">
-	<br>Your email: <input type="text" name="email"> 
+<form name="wrapper" id="signin_form" action={% url 'main.views.signin' %} method="POST" >
+
+	<label>{{rform.email.label}}</label>
+	<input type="text" class="large_gray_text_box hcenter nofloat" name="{{rform.email.html_name}}" {% if rform.email.value %}value="{{rform.email.value}}"{%endif%}/>
+	<label>{{rform.pw1.label}}</label>
+	<input type="password" class="large_gray_text_box hcenter nofloat" name="{{rform.pw1.html_name}}"/>
+	<label>{{rform.pw2.label}}</label>
+	<input type="password" class="large_gray_text_box hcenter nofloat" name="{{rform.pw2.html_name}}" />
+
+
+
+	<input type="submit" class="hidden" />
+	<input type="submit" class="gray_button fright" style="margin-right: 30px;" value="Register"></input>
+
+<!--
+	<br>Your email: <input type="text" name="email">
 	<br>Password: <input type="password" name="pwd">
 	<input type="submit" value="Submit">
+-->
 </form>
+
+
 Want to sign up?
-<form name="wrapper" action="/hackhealth/signup" method="POST">
-	br>Your name: <input type="text" name="name"> 
+<form name="wrapper" id="signup_form" action={% url 'main.views.signup' %} method="POST">
+	br>Your name: <input type="text" name="name">
 	<br>Your email: <input type="text" name="email">
 	<br><input type="radio" name="gender" value="male">Male
 	<input type="radio" name="gender" value="female">Female

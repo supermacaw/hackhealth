@@ -9,7 +9,7 @@ import dj_database_url
 
 
 
-
+SITE_ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.realpath(__file__)),'..'))
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
